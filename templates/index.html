@@ -1,0 +1,79 @@
+<!--References [2]-->
+<!--This page represents the Login page in our web application-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!--Imports the style3.css file-->
+    <link rel="stylesheet" href="../static/css/style3.css">
+    <title>Account Creation</title>
+</head>
+
+<body>
+    <!--This is the sign up option where the user inputs all their desired account credentials.-->
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form action="/signup/" method="post">
+            <!--Validated with csrf token-->
+            {% csrf_token %}
+                <h1>Create Account</h1>
+                <br>
+                <span>use your email for registeration</span>
+                <input type="text" id="username" name="username" placeholder="Username" Required>
+                <input type="text" id="fname" name="fname" placeholder="First Name" Required>
+                <input type="text" id="lname" name="lname" placeholder="Last Name" Required>
+                <input type="email" id="email" name="email" placeholder="Email" Required>
+                <input type="password" id="pass1" name="pass1" placeholder="Password" Required>
+                <input type="password" id="pass2" name="pass2" placeholder="Confirm Password" Required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <script src="" async defer></script>
+        
+        </div>
+        
+        <!--This is the sign in option where the user inputs their already existing account credentials to access the web application's features-->
+        <div class="form-container sign-in">
+            <form action="/signin/" method="post">
+            <!--Validated with csrf token-->
+            {% csrf_token %}
+                <h1>Sign In</h1>
+                <br>
+                <span>use your username and password</span>
+                <input type="text" id="username" name="username" placeholder="Username" Required>
+                <input type="password" id="pass1" name="pass1" placeholder="Password" Required>
+                <button type="submit">Sign In</button>
+            </form>
+            <script src="" async defer></script>
+
+        </div>
+
+        <!--These are the buttons the user clicks to toggle between sign up and sign in-->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to start scheduling your day</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Doctor!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--References script.js for the animation between toggling between sign up and sign in-->
+    <script src="../static/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!--This page represents the Delete page in our web application-->
+<!--References [3]-->
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Delete</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--Imports the style2.css file-->
+        <link rel="stylesheet" href="../static/css/style2.css">
+        <!--This is importing Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+        <script>
+            $(document).ready(function() {
+                $('#deleteForm').on('submit', function(e) {
+                    e.preventDefault();  // Prevent form from submitting normally and bypassing the ajax request in the view
+        
+                    var ID = document.getElementById('ID').value;
+                    $.ajax({
+                        type: "GET",
+                        url: "{% url 'get_surgery_info' %}",
+                        data: {
+                            "id": ID,
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.error) {
+                                alert(data.error);
+                            } else {
+                                var confirmation = confirm('Are you sure you want to delete surgery with Patient ' + data.fullName + '?');
+                                if (confirmation) {
+                                    $('#deleteForm').unbind('submit').submit();  // Manually submit the form
+                                }
+                            }
+                        },
+                        failure: function () {
+                            alert("some error idk why");
+                        }
+                    });
+                });
+            });
+        </script>
+    </head>
+
+
+    <body>
+        <section class="sub-header">
+            <!--This is the navigation bar that redirects the user to their respective pages-->
+            <nav>
+                <a href="home.html"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/personschedule">Personal Schedule</a></li>
+                        <li><a href="/appointment">Booking</a></li>
+                        <li><a href="/followups">Checkups</a></li>
+                        <li><a href="/archive">Find Appointments</a></li>
+                        <li><a href="/delete">Delete Appointments</a></li>
+                        <li><a href="/aboutus">About Us</a></li>
+                        <li><a href="/index">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+        <h1>Delete Appointments</h1>
+    
+        </section>
+
+        <section class="check-content">
+            <!--This is the body text and image for the about us page-->
+            <div class="row">
+                <div class="check">
+                    <h2>Keep Everything Organized</h2>
+                    <p>Finished with a job or appointment? Keep your schedule clean by deleting the unecessary appointments here. Select the corresponding appointment ID. Confirm the ID by clicking on the appointment in your calendar.</p>
+                    <h2>Select An Appointment</h2>
+
+                    <!--This asks the user for a surgery ID input so that it can validate and then delete it-->
+                    <form class="schedule-form" action="/delete/" method="post">
+                        {% csrf_token %}
+                        <label for="">Surgery Id</label>
+                        <input type="number" id="ID" name="ID" placeholder="Enter the surgery ID" Required>
+                        
+                        <br>
+                        <br>
+                        <button type = 'submit' class="hero-btn red-btn">DELETE</button>
+                        <label id = "Errors"></label>
+                    </form>
+                </div>
+
+                <!--this is the image on the right to add visual elements-->
+                <div class="check-right">
+                    <img src="https://i.pinimg.com/originals/d5/11/ba/d511ba5195487625ab44986e9a27ee9a.png">
+                </div>
+    
+            </div>
+        </section>
+
+        
+        <!--This is the footer under most pages-->
+        <section class="footer">
+            <h4>About Us</h4>
+            <p>We are a group of dedicated high school students who want to make a positive impact in the rapidly developing world. This webapp is our attempt to simplify <br>the hectic schedules of surgeons and create a well-balanced work environment.</p>
+            <p>Made by Medi-Cal Project Team</p>
+
+        </section>
+
+    </body>
+</html>

@@ -1,0 +1,112 @@
+<!--This page represents our Person Schedule page for our web application-->
+
+<!--uses HTML inheritence to import the side bar-->
+{%extends 'base.html'%}
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+
+
+{% block title %} Personal Schedule {% endblock %}
+
+<!--References [6] for the calendar template-->
+{% block scheduling %} 
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src = "{% static 'js/tempscript.js' %}"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+  </head>
+  <header class="cd-main-header text-center flex flex-column flex-center">
+    <h1 class ="text-xl" style="color:white">. </h1>
+    <h1 class="text-xl">Personal Schedule</h1>
+  </header>
+  <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
+    <div class="cd-schedule__timeline">
+      <ul>
+        <li><span>00:00</span></li>
+        <li><span>00:30</span></li>
+        <li><span>01:00</span></li>
+        <li><span>01:30</span></li>
+        <li><span>02:00</span></li>
+        <li><span>02:30</span></li>
+        <li><span>03:00</span></li>
+        <li><span>03:30</span></li>
+        <li><span>04:00</span></li>
+        <li><span>04:30</span></li>
+        <li><span>05:00</span></li>
+        <li><span>05:30</span></li>
+        <li><span>06:00</span></li>
+        <li><span>06:30</span></li>
+        <li><span>07:00</span></li>
+        <li><span>07:30</span></li>
+        <li><span>08:00</span></li>
+        <li><span>08:30</span></li>
+        <li><span>09:00</span></li>
+        <li><span>09:30</span></li>
+        <li><span>10:00</span></li>
+        <li><span>10:30</span></li>
+        <li><span>11:00</span></li>
+        <li><span>11:30</span></li>
+        <li><span>12:00</span></li>
+        <li><span>12:30</span></li>
+        <li><span>13:00</span></li>
+        <li><span>13:30</span></li>
+        <li><span>14:00</span></li>
+        <li><span>14:30</span></li>
+        <li><span>15:00</span></li>
+        <li><span>15:30</span></li>
+        <li><span>16:00</span></li>
+        <li><span>16:30</span></li>
+        <li><span>17:00</span></li>
+        <li><span>17:30</span></li>
+        <li><span>18:00</span></li>
+        <li><span>18:30</span></li>
+        <li><span>19:00</span></li>
+        <li><span>19:30</span></li>
+        <li><span>20:00</span></li>
+        <li><span>20:30</span></li>
+        <li><span>21:00</span></li>
+        <li><span>21:30</span></li>
+        <li><span>22:00</span></li>
+        <li><span>22:30</span></li>
+        <li><span>23:00</span></li>
+        <li><span>23:30</span></li>
+      </ul>
+    </div> <!-- .cd-schedule__timeline -->
+    
+    {{ schedule_string |safe }}
+    <div class="cd-schedule-modal">
+      <header class="cd-schedule-modal__header">
+        <div class="cd-schedule-modal__content">
+          <span class="cd-schedule-modal__date"></span>
+          <h3 class="cd-schedule-modal__name"></h3>
+        </div>
+  
+        <div class="cd-schedule-modal__header-bg"></div>
+      </header>
+  
+      <div class="cd-schedule-modal__body">
+        <div class="cd-schedule-modal__event-info"></div>
+        <div class="cd-schedule-modal__body-bg"></div>
+      </div>
+  
+      <a href="#0" class="cd-schedule-modal__close text-replace">Close</a>
+    </div>
+  
+    <div class="cd-schedule__cover-layer"></div>
+  </div> <!-- .cd-schedule -->
+
+  <script src = "{% static 'js/util.js' %}"></script> <!-- util functions included in the CodyHouse framework -->
+  <script src = "{% static 'js/main.js' %}"></script>
+{% endblock  %}
+
+<script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
+
+</html>

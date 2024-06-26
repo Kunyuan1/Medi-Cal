@@ -1,0 +1,21 @@
+<!--References [6] for the calendar template-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src = "{% static 'js/util.js' %}"></script> <!-- util functions included in the CodyHouse framework -->
+    <script src = "{% static 'js/main.js' %}"></script>
+</head>
+
+{% block content %}
+<body>
+<div class="cd-schedule-modal__event-info">
+    {{ info }}
+</div>
+{% endblock %}
+
+</body>
+</html>

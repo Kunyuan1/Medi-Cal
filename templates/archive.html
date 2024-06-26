@@ -1,0 +1,137 @@
+<!--This page represents our Archive page for our web application-->
+
+<!--uses HTML inheritence to import the side bar-->
+{%extends 'base.html'%}
+
+{% load static %}
+
+<!doctype html>
+
+<html lang="en">
+
+{% block title %} Find appointment {% endblock %}
+
+
+{% block content %} 
+
+<h1> Find appointment </h1>
+<body>
+  <!-- Creates form to input the archive date-->
+    <form action="/archive/" method="post">
+        {% csrf_token %}
+        <label for="">Date</label>
+        <select name="Month" id="Month" Required>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select>
+        <input type="number" id="Day" name="Day" min="1" max="31" placeholder="1" Required></input>
+        <input type="number" id="Year" name="Year" min="2024" max="2027" placeholder="2024" Required></input>
+
+        <button type = 'submit'>Submit</button>
+        <label id = "Errors"></label>
+    </form>
+</body>
+{% endblock %}
+
+<!--References [6] for the calendar template-->
+{% block scheduling %} 
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src = "{% static 'js/tempscript.js' %}"></script>
+  </head>
+  <header class="cd-main-header text-center flex flex-column flex-center">
+    <h1 class ="text-xl" style="color:white">. </h1>
+    <h1 class="text-xl">{{ title }}</h1>
+  </header>
+  <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
+    <div class="cd-schedule__timeline">
+      <ul>
+        <li><span>00:00</span></li>
+        <li><span>00:30</span></li>
+        <li><span>01:00</span></li>
+        <li><span>01:30</span></li>
+        <li><span>02:00</span></li>
+        <li><span>02:30</span></li>
+        <li><span>03:00</span></li>
+        <li><span>03:30</span></li>
+        <li><span>04:00</span></li>
+        <li><span>04:30</span></li>
+        <li><span>05:00</span></li>
+        <li><span>05:30</span></li>
+        <li><span>06:00</span></li>
+        <li><span>06:30</span></li>
+        <li><span>07:00</span></li>
+        <li><span>07:30</span></li>
+        <li><span>08:00</span></li>
+        <li><span>08:30</span></li>
+        <li><span>09:00</span></li>
+        <li><span>09:30</span></li>
+        <li><span>10:00</span></li>
+        <li><span>10:30</span></li>
+        <li><span>11:00</span></li>
+        <li><span>11:30</span></li>
+        <li><span>12:00</span></li>
+        <li><span>12:30</span></li>
+        <li><span>13:00</span></li>
+        <li><span>13:30</span></li>
+        <li><span>14:00</span></li>
+        <li><span>14:30</span></li>
+        <li><span>15:00</span></li>
+        <li><span>15:30</span></li>
+        <li><span>16:00</span></li>
+        <li><span>16:30</span></li>
+        <li><span>17:00</span></li>
+        <li><span>17:30</span></li>
+        <li><span>18:00</span></li>
+        <li><span>18:30</span></li>
+        <li><span>19:00</span></li>
+        <li><span>19:30</span></li>
+        <li><span>20:00</span></li>
+        <li><span>20:30</span></li>
+        <li><span>21:00</span></li>
+        <li><span>21:30</span></li>
+        <li><span>22:00</span></li>
+        <li><span>22:30</span></li>
+        <li><span>23:00</span></li>
+        <li><span>23:30</span></li>
+      </ul>
+    </div> <!-- .cd-schedule__timeline -->
+    
+    {{ schedule_string |safe }}
+    <div class="cd-schedule-modal">
+      <header class="cd-schedule-modal__header">
+        <div class="cd-schedule-modal__content">
+          <span class="cd-schedule-modal__date"></span>
+          <h3 class="cd-schedule-modal__name"></h3>
+        </div>
+  
+        <div class="cd-schedule-modal__header-bg"></div>
+      </header>
+  
+      <div class="cd-schedule-modal__body">
+        <div class="cd-schedule-modal__event-info"></div>
+        <div class="cd-schedule-modal__body-bg"></div>
+      </div>
+  
+      <a href="#0" class="cd-schedule-modal__close text-replace">Close</a>
+    </div>
+  
+    <div class="cd-schedule__cover-layer"></div>
+  </div> <!-- .cd-schedule -->
+
+  <script src = "{% static 'js/util.js' %}"></script> <!-- util functions included in the CodyHouse framework -->
+  <script src = "{% static 'js/main.js' %}"></script>
+{% endblock  %}
